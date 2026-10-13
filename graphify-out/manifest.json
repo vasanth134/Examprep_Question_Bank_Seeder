@@ -1,0 +1,42 @@
+{
+  "package.json": {
+    "mtime": 1791469223.4542816,
+    "ast_hash": "499a1a45f17dc6d93e2a0af9536a1dbe",
+    "semantic_hash": "499a1a45f17dc6d93e2a0af9536a1dbe"
+  },
+  "public/app.js": {
+    "mtime": 1791541166.6987183,
+    "ast_hash": "c3e3cc128c7b8d1e44a84134f40171c9",
+    "semantic_hash": "c3e3cc128c7b8d1e44a84134f40171c9"
+  },
+  "src/server.ts": {
+    "mtime": 1791541145.81561,
+    "ast_hash": "3d4ed43f29df9411ae2517357c3279a1",
+    "semantic_hash": "3d4ed43f29df9411ae2517357c3279a1"
+  },
+  "src/services/gemini-extractor.ts": {
+    "mtime": 1791542354.8451376,
+    "ast_hash": "e14f25ad23a55d3e8c7534baafa03651",
+    "semantic_hash": "e14f25ad23a55d3e8c7534baafa03651"
+  },
+  "src/services/tenant-seeder.ts": {
+    "mtime": 1791542394.4543035,
+    "ast_hash": "6e3ccb2a4c24a79ff0c232e6392c34c4",
+    "semantic_hash": "6e3ccb2a4c24a79ff0c232e6392c34c4"
+  },
+  "src/types.ts": {
+    "mtime": 1791469239.7461567,
+    "ast_hash": "b422c2f31e6f5bb02dfe2361debb4a68",
+    "semantic_hash": "b422c2f31e6f5bb02dfe2361debb4a68"
+  },
+  "tsconfig.json": {
+    "mtime": 1791542414.5894718,
+    "ast_hash": "3103c214431e291b66a8b41302294aaa",
+    "semantic_hash": "3103c214431e291b66a8b41302294aaa"
+  },
+  "public/index.html": {
+    "mtime": 1791541150.1940155,
+    "ast_hash": "ac6f5e0b3671317b105641c419cb72c8",
+    "semantic_hash": "ac6f5e0b3671317b105641c419cb72c8"
+  }
+}
