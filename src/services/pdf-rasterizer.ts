@@ -1,5 +1,5 @@
 import sharp from "sharp";
-import { createCanvas } from "canvas";
+import { createCanvas } from "@napi-rs/canvas";
 
 export interface RenderedPage {
   pageNumber: number;
@@ -15,9 +15,32 @@ export interface BoundingBox {
   xmax: number; // 0 to 1000
 }
 
+class NapiCanvasFactory {
+  create(width: number, height: number) {
+    const canvas = createCanvas(Math.max(1, Math.round(width)), Math.max(1, Math.round(height)));
+    const context = canvas.getContext("2d");
+    return {
+      canvas,
+      context,
+    };
+  }
+
+  reset(canvasAndContext: any, width: number, height: number) {
+    canvasAndContext.canvas.width = Math.max(1, Math.round(width));
+    canvasAndContext.canvas.height = Math.max(1, Math.round(height));
+  }
+
+  destroy(canvasAndContext: any) {
+    canvasAndContext.canvas.width = 0;
+    canvasAndContext.canvas.height = 0;
+    canvasAndContext.canvas = null;
+    canvasAndContext.context = null;
+  }
+}
+
 export class PdfRasterizerService {
   /**
-   * Render all or selected pages of a PDF to high-resolution PNG image buffers using pdfjs-dist & node-canvas
+   * Render all or selected pages of a PDF to high-resolution PNG image buffers using pdfjs-dist & @napi-rs/canvas
    */
   async renderPdfPages(
     pdfBuffer: Buffer,
@@ -38,21 +61,22 @@ export class PdfRasterizerService {
     const pdfDocument = await loadingTask.promise;
     const numPages = Math.min(pdfDocument.numPages, maxPages);
     const renderedPages: RenderedPage[] = [];
+    const canvasFactory = new NapiCanvasFactory();
 
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
       const page = await pdfDocument.getPage(pageNum);
       const viewport = page.getViewport({ scale });
 
-      const canvas = createCanvas(Math.floor(viewport.width), Math.floor(viewport.height));
-      const context = canvas.getContext("2d");
+      const { canvas, context } = canvasFactory.create(viewport.width, viewport.height);
 
       // Set white background for transparent PDF elements
       context.fillStyle = "#ffffff";
-      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.fillRect(0, 0, viewport.width, viewport.height);
 
       const renderContext = {
         canvasContext: context as any,
         viewport,
+        canvasFactory,
         canvas: canvas as any,
       };
 

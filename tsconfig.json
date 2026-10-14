@@ -5,9 +5,12 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
+      "@/*": ["src/client/src/*"],
+      "@shared/*": ["src/shared/*"],
       "drizzle-orm": ["../../examprep-backend/node_modules/drizzle-orm"],
       "drizzle-orm/*": ["../../examprep-backend/node_modules/drizzle-orm/*"]
     },
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,

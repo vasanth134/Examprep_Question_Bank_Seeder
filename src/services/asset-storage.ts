@@ -3,12 +3,7 @@ import path from "node:path";
 import crypto from "node:crypto";
 import dotenv from "dotenv";
 
-// Load backend .env if available
-const backendEnvPath = path.resolve(
-  __dirname,
-  "../../../../examprep-backend/config/.env"
-);
-dotenv.config({ path: backendEnvPath });
+// Environment is loaded exclusively by src/server/config/env.ts
 
 export interface UploadResult {
   url: string;

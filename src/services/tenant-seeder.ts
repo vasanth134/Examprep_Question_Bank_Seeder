@@ -1,12 +1,7 @@
 import path from "node:path";
 import dotenv from "dotenv";
 
-// Load backend .env before connecting to databases
-const backendEnvPath = path.resolve(
-  __dirname,
-  "../../../../examprep-backend/config/.env"
-);
-dotenv.config({ path: backendEnvPath });
+// Environment is loaded exclusively by src/server/config/env.ts
 
 import { getControlPool, resolveTenant } from "../../../../examprep-backend/src/db/tenant-registry";
 import { runWithTenant } from "../../../../examprep-backend/src/db/tenant-context";
@@ -26,7 +21,7 @@ import type {
   SeedPayload,
   SeedResult,
   QuestionCandidate,
-} from "../types";
+} from "../shared/types";
 
 export class TenantSeederService {
   /**

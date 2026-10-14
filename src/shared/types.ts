@@ -34,6 +34,9 @@ export interface QuestionCandidate {
   marks: number;
   negativeMarks: number;
   explanation?: string;
+  explanationImageUrl?: string;
+  explanationImageBox?: BoundingBoxCoordinates;
+  explanationPageNumber?: number;
   correctAnswer?: string;
   options: OptionCandidate[];
   imageUrl?: string;
